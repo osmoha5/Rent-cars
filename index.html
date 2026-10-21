@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="so" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Osmoha Company | Kireynta Baabuurta ee Soomaaliya & Fleet Dashboard</title>
+  
+  <meta name="description" content="Osmoha Company - Hogaamiyaha kireynta baabuurta raaxada, 4x4, pickups, iyo baabuurta qoyska ee Muqdisho, Hargeysa, Garoowe iyo dhammaan gobolada dalka.">
+
+  <!-- Google Font: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- SomDrive CSS -->
+  <link rel="stylesheet" href="cars-style.css">
+</head>
+<body>
+
+  <!-- ===================================================================
+       VIEW 1: PUBLIC RENTAL PORTAL
+       =================================================================== -->
+  <div id="portalView">
+    <!-- Top Contact Bar -->
+    <div class="top-bar">
+      <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <a href="../index.html" style="background:rgba(255,255,255,0.15); padding:0.2rem 0.6rem; border-radius:4px; font-weight:700; color:#fff; margin-right:0.8rem;">
+            <i class="fas fa-ship"></i> Somarine (Doomaha)
+          </a>
+          <i class="fas fa-shield-alt" style="color:var(--primary);"></i> <strong>Osmoha Company</strong> - Gaadiid Sugan & Kiro La Isku Haleyn Karo
+        </div>
+        <div style="display:flex; gap:1.5rem;">
+          <span><i class="fas fa-phone-alt"></i> +252 61 700 0000 / +252 63 500 0000</span>
+          <span><i class="fas fa-map-marker-alt"></i> Muqdisho | Hargeysa | Garoowe | Kismaayo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="header">
+      <div class="container nav-container">
+        <a href="#" class="logo">
+          <div class="logo-badge">
+            <i class="fas fa-car-side"></i>
+          </div>
+          <div>OSMO<span>HA</span> COMPANY</div>
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="#hero" class="nav-link active">Bogga Hore</a></li>
+          <li><a href="#categories" class="nav-link">Qeybaha</a></li>
+          <li><a href="#fleetSection" class="nav-link">Baabuurta Kireynta</a></li>
+          <li><a href="#howItWorks" class="nav-link">Sida Ay U Shaqeyso</a></li>
+          <li><a href="#hubs" class="nav-link">Xarumaha</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <!-- Currency Switcher -->
+          <select id="currencySelector" class="currency-select" title="Dooro Lacagta">
+            <option value="USD">USD ($)</option>
+            <option value="SOS">SOS (Shilin)</option>
+          </select>
+
+          <!-- Theme Toggle -->
+          <button class="btn-icon" id="themeToggleBtn" title="Theme">
+            <i class="fas fa-sun"></i>
+          </button>
+
+          <!-- Open Dashboard Switcher Button -->
+          <button class="btn-dashboard-toggle" id="openDashboardBtn" title="Fur Dashboard-ka">
+            <i class="fas fa-tachometer-alt"></i> Dashboard-ka Maamulka
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="hero-overlay"></div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-tagline">
+            <i class="fas fa-star"></i> Osmoha Company - Kireynta Baabuurta Ugu Casrisan Soomaaliya
+          </div>
+          <h1 class="hero-title">
+            Kireyso Baabuurka <span>Aad Ku Kalsoon Tahay</span>, Maanta & Meel Kasta.
+          </h1>
+          <p class="hero-desc">
+            Kala dooro Toyota Land Cruiser V8, Prado, Mercedes G-Wagon, Hilux 4x4, baabuurta qoyska iyo basaska wafuudda oo leh darawal khibrad leh ama bilaa darawal.
+          </p>
+
+          <!-- Quick Search & Booking Bar -->
+          <div class="hero-booking-card">
+            <div class="book-field">
+              <label><i class="fas fa-map-marker-alt"></i> Magaalada</label>
+              <select id="heroCity">
+                <option value="Muqdisho">Muqdisho (Garoonka & KM4)</option>
+                <option value="Hargeysa">Hargeysa (Garoonka Cigaal)</option>
+                <option value="Garoowe">Garoowe (Xarunta)</option>
+                <option value="Kismaayo">Kismaayo</option>
+                <option value="Boosaaso">Boosaaso</option>
+              </select>
+            </div>
+
+            <div class="book-field">
+              <label><i class="fas fa-layer-group"></i> Nooca Baabuurka</label>
+              <select id="heroCat">
+                <option value="all">Dhammaan Noocyada</option>
+                <option value="suv">4x4 & SUV (V8, Prado)</option>
+                <option value="luxury">Raaxo & VIP (G-Wagon, Lexus)</option>
+                <option value="pickup">Pickups (Hilux 4x4)</option>
+                <option value="sedan">Sedan (Camry, Tucson)</option>
+                <option value="van">Minivan & Basaska</option>
+              </select>
+            </div>
+
+            <div class="book-field">
+              <label><i class="fas fa-calendar-alt"></i> Maalinta Qaadashada</label>
+              <input type="date" id="heroPickupDate">
+            </div>
+
+            <div class="book-field">
+              <label><i class="fas fa-calendar-check"></i> Maalinta Soo Celinta</label>
+              <input type="date" id="heroReturnDate">
+            </div>
+
+            <button class="btn-primary" id="heroSearchBtn" style="height: 48px;">
+              <i class="fas fa-search"></i> Raadi Baabuur
+            </button>
+          </div>
+
+          <!-- Hero Stats Row -->
+          <div class="hero-stats-row">
+            <div class="stat-box">
+              <h3>250+</h3>
+              <p>Baabuur oo Diyaar Ah</p>
+            </div>
+            <div class="stat-box">
+              <h3>5</h3>
+              <p>Magaalo oo aan Ku Leenahay Xarumo</p>
+            </div>
+            <div class="stat-box">
+              <h3>24/7</h3>
+              <p>Gurmadka Jidadka & Amniga</p>
+            </div>
+            <div class="stat-box">
+              <h3>10,000+</h3>
+              <p>Macaamiil Qanacsan</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section" id="categories">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-tag">Qeybaha Baabuurta</span>
+          <h2 class="section-title">Kala Dooro Qeybta Aad U Baahan Tahay</h2>
+        </div>
+
+        <div class="category-grid">
+          <div class="cat-card" data-cat="suv">
+            <div class="cat-icon"><i class="fas fa-mountain"></i></div>
+            <h4>4x4 & SUV</h4>
+            <span>V8 LC300, Prado & Patrol</span>
+          </div>
+
+          <div class="cat-card" data-cat="luxury">
+            <div class="cat-icon"><i class="fas fa-gem"></i></div>
+            <h4>Raaxo & VIP</h4>
+            <span>G63 AMG, Lexus LX600</span>
+          </div>
+
+          <div class="cat-card" data-cat="pickup">
+            <div class="cat-icon"><i class="fas fa-truck-pickup"></i></div>
+            <h4>Pickups & 4x4</h4>
+            <span>Hilux D-Cab, Ford Raptor</span>
+          </div>
+
+          <div class="cat-card" data-cat="sedan">
+            <div class="cat-icon"><i class="fas fa-car"></i></div>
+            <h4>Sedan & Qoys</h4>
+            <span>Toyota Camry, Tucson</span>
+          </div>
+
+          <div class="cat-card" data-cat="van">
+            <div class="cat-icon"><i class="fas fa-shuttle-van"></i></div>
+            <h4>Minivan & Basaska</h4>
+            <span>HiAce 14-Seat, Coaster 30</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fleet Showcase Section -->
+    <section class="fleet-section" id="fleetSection">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-tag">Baabuurta Diyaar Ah</span>
+          <h2 class="section-title">Baabuurta Kireynta Ee Hadda Diyaar Ah</h2>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+          <div class="filter-pills">
+            <button class="pill-btn active" data-cat="all">Dhammaan Baabuurta</button>
+            <button class="pill-btn" data-cat="suv">4x4 & SUV</button>
+            <button class="pill-btn" data-cat="luxury">VIP & Raaxo</button>
+            <button class="pill-btn" data-cat="pickup">Pickups</button>
+            <button class="pill-btn" data-cat="sedan">Sedans</button>
+            <button class="pill-btn" data-cat="van">Vans & Basaska</button>
+          </div>
+
+          <div class="filter-controls-row">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input type="text" id="carSearchInput" placeholder="Ku raadi magaca, shidaalka, ama goobta (tusaale: V8, Prado, Diesel, Hargeysa)...">
+            </div>
+
+            <div style="display:flex; align-items:center; gap:0.8rem;">
+              <label style="font-size:0.85rem; color:var(--text-muted); font-weight:700;">Gear:</label>
+              <select id="carTransSelect" style="background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; padding:0.6rem 0.9rem; border-radius:var(--radius-md); font-size:0.88rem;">
+                <option value="all">Dhammaan</option>
+                <option value="Automatic">Automatic</option>
+                <option value="Manual">Manual</option>
+              </select>
+            </div>
+
+            <div class="sort-box">
+              <label for="carSortSelect" style="font-size:0.85rem; color:var(--text-muted); font-weight:700;">Kala Saacid:</label>
+              <select id="carSortSelect">
+                <option value="default">Dookha Caadiga ah</option>
+                <option value="price-low">Qiimaha: Hoose ilaa Sare</option>
+                <option value="price-high">Qiimaha: Sare ilaa Hoose</option>
+                <option value="rating">Qiimeynta Ugu Sarreysa</option>
+                <option value="year">Kuwa Ugu Cusub (Sanadka)</option>
+              </select>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:0.8rem; min-width:240px;">
+              <span style="font-size:0.85rem; color:var(--text-muted); font-weight:700;">Qiimaha Max:</span>
+              <input type="range" id="priceRangeSlider" min="30" max="500" step="10" value="500" style="flex:1; accent-color:var(--primary); cursor:pointer;">
+              <strong id="priceRangeVal" style="color:var(--primary-light); font-size:0.9rem;">$500</strong>
+            </div>
+
+            <div id="fleetResultCount" style="font-size:0.88rem; font-weight:700; color:var(--text-muted);">
+              Waxaa diyaar ah 12 baabuur
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Cars Grid -->
+        <div class="cars-grid" id="carsGrid">
+          <!-- Rendered dynamically by cars-app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section style="padding: 5rem 0; background: rgba(0,0,0,0.2);" id="howItWorks">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-tag">Fududeynta</span>
+          <h2 class="section-title">Sida Ay U Shaqeyso Kireysiga Osmoha Company</h2>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:2rem; text-align:center;">
+          <div style="background:var(--bg-card); padding:2rem; border-radius:var(--radius-lg); border:1px solid var(--border-color);">
+            <div style="width:65px; height:65px; background:rgba(230,57,70,0.12); color:var(--primary); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1.2rem; font-size:1.8rem; font-weight:900;">
+              1
+            </div>
+            <h3 style="font-size:1.2rem; font-weight:800; margin-bottom:0.6rem;">Dooro Baabuurkaaga</h3>
+            <p style="color:var(--text-muted); font-size:0.92rem;">Kala dooro baabuurta diyaar ka ah magaaladaada iyo taariikhaha aad u baahan tahay.</p>
+          </div>
+
+          <div style="background:var(--bg-card); padding:2rem; border-radius:var(--radius-lg); border:1px solid var(--border-color);">
+            <div style="width:65px; height:65px; background:rgba(230,57,70,0.12); color:var(--primary); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1.2rem; font-size:1.8rem; font-weight:900;">
+              2
+            </div>
+            <h3 style="font-size:1.2rem; font-weight:800; margin-bottom:0.6rem;">Xaqiiji Kireysiga</h3>
+            <p style="color:var(--text-muted); font-size:0.92rem;">Geli xogtaada, dooro haddii aad darawal u baahan tahay iyo caymis buuxa, kadibna dir dalabka.</p>
+          </div>
+
+          <div style="background:var(--bg-card); padding:2rem; border-radius:var(--radius-lg); border:1px solid var(--border-color);">
+            <div style="width:65px; height:65px; background:rgba(230,57,70,0.12); color:var(--primary); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1.2rem; font-size:1.8rem; font-weight:900;">
+              3
+            </div>
+            <h3 style="font-size:1.2rem; font-weight:800; margin-bottom:0.6rem;">Qaado Baabuurkaaga</h3>
+            <p style="color:var(--text-muted); font-size:0.92rem;">Baabuurka waxaa laguugu keenayaa garoonka diyaaradaha, hoteelka ama goobta aad dooratay.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hubs / Cities Network -->
+    <section style="padding: 5rem 0;" id="hubs">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-tag">Xarumaha Dalka</span>
+          <h2 class="section-title">Magaalooyinka Aan Ku Leenahay Xarumo</h2>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1.2rem;">
+          <div style="background:var(--bg-card); border-left:4px solid var(--primary); padding:1.5rem; border-radius:var(--radius-md); border-top:1px solid var(--border-color); border-right:1px solid var(--border-color); border-bottom:1px solid var(--border-color);">
+            <h4 style="font-size:1.15rem; font-weight:800; margin-bottom:0.3rem;">Muqdisho (HQ)</h4>
+            <div style="color:var(--primary); font-size:0.8rem; font-weight:700; margin-bottom:0.4rem;">KM4 & Garoonka Aadan Cadde</div>
+            <span style="font-size:0.82rem; color:var(--text-muted);"><i class="fas fa-check-circle" style="color:var(--emerald);"></i> 48 Baabuur Diyaar Ah</span>
+          </div>
+
+          <div style="background:var(--bg-card); border-left:4px solid var(--primary); padding:1.5rem; border-radius:var(--radius-md); border-top:1px solid var(--border-color); border-right:1px solid var(--border-color); border-bottom:1px solid var(--border-color);">
+            <h4 style="font-size:1.15rem; font-weight:800; margin-bottom:0.3rem;">Hargeysa</h4>
+            <div style="color:var(--primary); font-size:0.8rem; font-weight:700; margin-bottom:0.4rem;">Garoonka Cigaal & Xarunta</div>
+            <span style="font-size:0.82rem; color:var(--text-muted);"><i class="fas fa-check-circle" style="color:var(--emerald);"></i> 32 Baabuur Diyaar Ah</span>
+          </div>
+
+          <div style="background:var(--bg-card); border-left:4px solid var(--primary); padding:1.5rem; border-radius:var(--radius-md); border-top:1px solid var(--border-color); border-right:1px solid var(--border-color); border-bottom:1px solid var(--border-color);">
+            <h4 style="font-size:1.15rem; font-weight:800; margin-bottom:0.3rem;">Garoowe</h4>
+            <div style="color:var(--primary); font-size:0.8rem; font-weight:700; margin-bottom:0.4rem;">Xarunta Puntland & Garoonka</div>
+            <span style="font-size:0.82rem; color:var(--text-muted);"><i class="fas fa-check-circle" style="color:var(--emerald);"></i> 22 Baabuur Diyaar Ah</span>
+          </div>
+
+          <div style="background:var(--bg-card); border-left:4px solid var(--primary); padding:1.5rem; border-radius:var(--radius-md); border-top:1px solid var(--border-color); border-right:1px solid var(--border-color); border-bottom:1px solid var(--border-color);">
+            <h4 style="font-size:1.15rem; font-weight:800; margin-bottom:0.3rem;">Kismaayo</h4>
+            <div style="color:var(--primary); font-size:0.8rem; font-weight:700; margin-bottom:0.4rem;">Xarunta Jubbaland & Dekadda</div>
+            <span style="font-size:0.82rem; color:var(--text-muted);"><i class="fas fa-check-circle" style="color:var(--emerald);"></i> 18 Baabuur Diyaar Ah</span>
+          </div>
+
+          <div style="background:var(--bg-card); border-left:4px solid var(--primary); padding:1.5rem; border-radius:var(--radius-md); border-top:1px solid var(--border-color); border-right:1px solid var(--border-color); border-bottom:1px solid var(--border-color);">
+            <h4 style="font-size:1.15rem; font-weight:800; margin-bottom:0.3rem;">Boosaaso</h4>
+            <div style="color:var(--primary); font-size:0.8rem; font-weight:700; margin-bottom:0.4rem;">Garoonka Bender Qassim</div>
+            <span style="font-size:0.82rem; color:var(--text-muted);"><i class="fas fa-check-circle" style="color:var(--emerald);"></i> 20 Baabuur Diyaar Ah</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background:#070d17; border-top:1px solid var(--border-color); padding:4rem 0 2rem; color:var(--text-muted);">
+      <div class="container">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:2.5rem; margin-bottom:3rem;">
+          <div>
+            <div class="logo" style="margin-bottom:1rem;">
+              <div class="logo-badge"><i class="fas fa-car-side"></i></div>
+              <div>OSMO<span>HA</span> COMPANY</div>
+            </div>
+            <p style="font-size:0.9rem; line-height:1.7;">
+              Osmoha Company waa shirkad hogaamisa kireynta baabuurta casriga ah ee Soomaaliya. Waxaan bixinaa adeeg sugan, darawallo tababaran, iyo baabuuro 4x4 & raaxo leh.
+            </p>
+          </div>
+
+          <div>
+            <h4 style="color:#fff; font-size:1.1rem; font-weight:800; margin-bottom:1.2rem;">Xiriirka Tooska ah</h4>
+            <p style="font-size:0.9rem; margin-bottom:0.5rem;"><i class="fas fa-phone-alt" style="color:var(--primary); margin-right:0.5rem;"></i> +252 61 700 0000</p>
+            <p style="font-size:0.9rem; margin-bottom:0.5rem;"><i class="fab fa-whatsapp" style="color:var(--emerald); margin-right:0.5rem;"></i> WhatsApp: +252 61 700 0000</p>
+            <p style="font-size:0.9rem;"><i class="fas fa-envelope" style="color:var(--cyan); margin-right:0.5rem;"></i> kiro@osmohacompany.so</p>
+          </div>
+
+          <div>
+            <h4 style="color:#fff; font-size:1.1rem; font-weight:800; margin-bottom:1.2rem;">Maamulka</h4>
+            <button class="btn-primary" onclick="switchView('dashboard');" style="width:100%; justify-content:center;">
+              <i class="fas fa-tachometer-alt"></i> Fur Dashboard-ka Maamulka
+            </button>
+          </div>
+        </div>
+
+        <div style="border-top:1px solid var(--border-color); padding-top:1.5rem; text-align:center; font-size:0.85rem;">
+          © 2026 Osmoha Company Fleet Systems. Dhammaan Xuquuqda waa dhowran tahay.
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ===================================================================
+       VIEW 2: INTEGRATED FLEET & ADMIN DASHBOARD
+       =================================================================== -->
+  <div class="dashboard-view" id="dashboardView">
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-header">
+        <div class="logo-badge" style="width:38px; height:38px; font-size:1.1rem;">
+          <i class="fas fa-car-side"></i>
+        </div>
+        <div style="font-weight:900; font-size:1.3rem;">OSMO<span>HA</span></div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li>
+          <button class="sidebar-btn active" data-tab="overview">
+            <i class="fas fa-chart-line"></i> Guudmar (Overview)
+          </button>
+        </li>
+        <li>
+          <button class="sidebar-btn" data-tab="fleet">
+            <i class="fas fa-car"></i> Maamulka Baabuurta
+          </button>
+        </li>
+        <li>
+          <button class="sidebar-btn" data-tab="bookings">
+            <i class="fas fa-calendar-check"></i> Kirooyinka (Bookings)
+          </button>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <button class="btn-secondary" id="backToPortalBtn" style="width:100%; justify-content:center; font-size:0.85rem;">
+          <i class="fas fa-arrow-left"></i> Ku Noqo Bogga Kireynta
+        </button>
+      </div>
+    </aside>
+
+    <!-- Dashboard Main Area -->
+    <main class="dashboard-main">
+      <div class="dash-topbar">
+        <div class="dash-title">
+          <h2>Dashboard-ka Maamulka & Kireynta Baabuurta</h2>
+          <p>La soco kirooyinka hadda socda, dakhliga, iyo xaaladda baabuurta fleet-ka.</p>
+        </div>
+
+        <div style="display:flex; gap:0.8rem; align-items:center;">
+          <button class="btn-primary" onclick="openAddCarModal()">
+            <i class="fas fa-plus"></i> Ku Dar Baabuur Cusub
+          </button>
+        </div>
+      </div>
+
+      <!-- TAB 1: OVERVIEW -->
+      <div class="dash-tab-content" id="tab-overview">
+        <!-- KPI Metric Cards -->
+        <div class="dash-kpis-grid">
+          <div class="kpi-card">
+            <div class="kpi-data">
+              <p>Wadarta Baabuurta</p>
+              <h3 id="dashTotalFleet">12</h3>
+            </div>
+            <div class="kpi-icon kpi-blue">
+              <i class="fas fa-car"></i>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-data">
+              <p>Kirooyinka Hadda Socda</p>
+              <h3 id="dashActiveRentals">3</h3>
+            </div>
+            <div class="kpi-icon kpi-red">
+              <i class="fas fa-key"></i>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-data">
+              <p>Baabuurta Diyaar Ah</p>
+              <h3 id="dashAvailableCars">8</h3>
+            </div>
+            <div class="kpi-icon kpi-green">
+              <i class="fas fa-check-circle"></i>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-data">
+              <p>Dakhliga Kireynta</p>
+              <h3 id="dashTotalRevenue">$3,555</h3>
+            </div>
+            <div class="kpi-icon kpi-yellow">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analytics Row -->
+        <div class="dash-analytics-row">
+          <div class="chart-card">
+            <h4>
+              <span><i class="fas fa-chart-bar" style="color:var(--primary);"></i> Dakhliga Kireynta Bishiiba (2026)</span>
+              <span class="badge badge-primary">Sannadka Hadda</span>
+            </h4>
+            <div class="bar-chart-container">
+              <div class="bar-col">
+                <div class="bar-fill" style="height: 45%;"></div>
+                <span class="bar-label">Jun</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar-fill" style="height: 60%;"></div>
+                <span class="bar-label">Jul</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar-fill" style="height: 80%;"></div>
+                <span class="bar-label">Aug</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar-fill" style="height: 70%;"></div>
+                <span class="bar-label">Sep</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar-fill" style="height: 95%;"></div>
+                <span class="bar-label">Oct</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar-fill" style="height: 85%;"></div>
+                <span class="bar-label">Nov</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <h4><i class="fas fa-history" style="color:var(--primary);"></i> Kirooyinkii Ugu Dambeeyay</h4>
+            <div id="recentBookingsMini">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: FLEET MANAGER -->
+      <div class="dash-tab-content" id="tab-fleet" style="display:none;">
+        <div class="dash-table-wrap">
+          <div class="dash-table-header">
+            <h3 style="font-size:1.2rem; font-weight:800;">Liiska Baabuurta Diwaangashan</h3>
+            <button class="btn-primary" onclick="openAddCarModal()">
+              <i class="fas fa-plus-circle"></i> Ku Dar Baabuur
+            </button>
+          </div>
+          <table class="dash-table">
+            <thead>
+              <tr>
+                <th>Baabuurka & Taargada</th>
+                <th>Qeybta</th>
+                <th>Qiimaha / Maalin</th>
+                <th>Magaalada</th>
+                <th>Xaaladda</th>
+                <th>Ficilada (Actions)</th>
+              </tr>
+            </thead>
+            <tbody id="fleetTableBody">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 3: BOOKINGS MANAGER -->
+      <div class="dash-tab-content" id="tab-bookings" style="display:none;">
+        <div class="dash-table-wrap">
+          <div class="dash-table-header">
+            <h3 style="font-size:1.2rem; font-weight:800;">Dhammaan Dalabaadka Kireynta</h3>
+          </div>
+          <table class="dash-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Macaamiilka</th>
+                <th>Baabuurka</th>
+                <th>Magaalada</th>
+                <th>Muddada</th>
+                <th>Wadarta</th>
+                <th>Xaaladda</th>
+                <th>Maamulka</th>
+              </tr>
+            </thead>
+            <tbody id="bookingsTableBody">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ===================================================================
+       MODAL: RENTAL BOOKING
+       =================================================================== -->
+  <div class="modal-backdrop" id="bookingModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeBookingModal()">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="booking-modal-grid">
+        <!-- Car Summary -->
+        <div class="book-car-preview">
+          <img src="" id="bookCarImg" class="preview-img" alt="Car">
+          <h3 id="bookCarTitle" style="font-size:1.35rem; font-weight:800; margin-bottom:0.3rem;"></h3>
+          <div id="bookCarDailyRate" style="color:#ff6b6b; font-weight:900; font-size:1.2rem; margin-bottom:0.5rem;"></div>
+          <p id="bookCarPlate" style="font-size:0.8rem; color:var(--text-muted);"></p>
+          <p id="bookCarLocation" style="font-size:0.8rem; color:var(--cyan);"><i class="fas fa-map-marker-alt"></i></p>
+
+          <div class="price-summary-card">
+            <div class="summary-row">
+              <span>Muddada Kirada:</span>
+              <strong id="calcDaysCount">3 Maalmood</strong>
+            </div>
+            <div class="summary-row">
+              <span>Qiimaha Aasaasiga ah:</span>
+              <span id="calcBasePrice">$0</span>
+            </div>
+            <div class="summary-row">
+              <span>Qidmada Darawalka:</span>
+              <span id="calcDriverFee">$0</span>
+            </div>
+            <div class="summary-row">
+              <span>Qidmada Caymiska:</span>
+              <span id="calcInsuranceFee">$0</span>
+            </div>
+            <div class="summary-total">
+              <span>Wadarta Guud:</span>
+              <span id="calcGrandTotal">$0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Booking Form -->
+        <div>
+          <h3 style="font-size:1.4rem; font-weight:800; margin-bottom:0.5rem;">
+            <i class="fas fa-file-contract" style="color:var(--primary);"></i> Xogta Kireysiga
+          </h3>
+          <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:1.2rem;">
+            Buuxi foomka si aad u xaqiijisato baabuurkaaga.
+          </p>
+
+          <form id="rentalBookingForm">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-bottom:0.8rem;">
+              <div class="book-field">
+                <label>Taariikhda Qaadashada</label>
+                <input type="date" id="bookPickupDate" required>
+              </div>
+              <div class="book-field">
+                <label>Taariikhda Soo Celinta</label>
+                <input type="date" id="bookReturnDate" required>
+              </div>
+            </div>
+
+            <!-- Add-ons -->
+            <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-color); padding:0.8rem; border-radius:var(--radius-sm); margin-bottom:0.8rem;">
+              <span style="font-size:0.78rem; font-weight:700; color:#ff6b6b; text-transform:uppercase; display:block; margin-bottom:0.5rem;">Adeegyo Dheeraad Ah</span>
+              
+              <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.85rem; margin-bottom:0.4rem; cursor:pointer;">
+                <input type="checkbox" id="addonDriver" checked> Darawal Khibrad Leh (+ $20/maalintii)
+              </label>
+              <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.85rem; margin-bottom:0.4rem; cursor:pointer;">
+                <input type="checkbox" id="addonInsurance"> Caymis Buuxa oo VIP ah (+ $15/maalintii)
+              </label>
+              <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.85rem; cursor:pointer;">
+                <input type="checkbox" id="addonGPS"> Nidaamka GPS Navigation (+ $5/maalintii)
+              </label>
+            </div>
+
+            <div class="book-field" style="margin-bottom:0.8rem;">
+              <label>Magacaaga Oo Buuxa</label>
+              <input type="text" id="custName" required placeholder="Tusaale: Cali Maxamed Jaamac">
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-bottom:0.8rem;">
+              <div class="book-field">
+                <label>Taleefanka (WhatsApp / Hormuud)</label>
+                <input type="tel" id="custPhone" required placeholder="+252 61 XXXXXXX">
+              </div>
+              <div class="book-field">
+                <label>Magaalada Aad Joogto</label>
+                <select id="custCity">
+                  <option value="Muqdisho">Muqdisho</option>
+                  <option value="Hargeysa">Hargeysa</option>
+                  <option value="Garoowe">Garoowe</option>
+                  <option value="Kismaayo">Kismaayo</option>
+                  <option value="Boosaaso">Boosaaso</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="book-field" style="margin-bottom:1.2rem;">
+              <label>Goobta Baabuurka Laguugu Keenayo</label>
+              <input type="text" id="custDropLocation" placeholder="Tusaale: Garoonka Aadan Cadde ama Jazeera Palace Hotel">
+            </div>
+
+            <button type="submit" class="btn-primary" style="width:100%; justify-content:center; padding:0.85rem;">
+              <i class="fas fa-check-circle"></i> Xaqiiji & Kireyso Hadda
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       MODAL: BOOKING TICKET / RECEIPT
+       =================================================================== -->
+  <div class="modal-backdrop" id="ticketModal">
+    <div class="modal-box" style="max-width: 580px; padding: 2rem;">
+      <button class="modal-close" onclick="closeTicketModal()">
+        <i class="fas fa-times"></i>
+      </button>
+      <div id="ticketModalBody">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       MODAL: CAR DETAILS
+       =================================================================== -->
+  <div class="modal-backdrop" id="detailModal">
+    <div class="modal-box" style="max-width: 750px;">
+      <button class="modal-close" onclick="closeDetailModal()">
+        <i class="fas fa-times"></i>
+      </button>
+      <div id="detailModalBody">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       MODAL: ADD NEW CAR (ADMIN)
+       =================================================================== -->
+  <div class="modal-backdrop" id="addCarModal">
+    <div class="modal-box" style="max-width: 650px; padding: 2rem;">
+      <button class="modal-close" onclick="closeAddCarModal()">
+        <i class="fas fa-times"></i>
+      </button>
+      <h3 style="font-size:1.4rem; font-weight:800; margin-bottom:0.5rem; color:var(--primary);">
+        <i class="fas fa-plus-circle"></i> Ku Dar Baabuur Cusub Fleet-ka
+      </h3>
+      <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:1.5rem;">
+        Geli xogta baabuurka cusub si uu toos uga dhex muuqdo liiska kireynta.
+      </p>
+
+      <form id="addCarForm">
+        <div style="display:grid; grid-template-columns:1.5fr 1fr; gap:0.8rem; margin-bottom:0.8rem;">
+          <div class="book-field">
+            <label>Magaca Baabuurka & Nooca</label>
+            <input type="text" id="newCarName" required placeholder="Tusaale: Toyota Prado TXL 2024">
+          </div>
+          <div class="book-field">
+            <label>Qeybta (Category)</label>
+            <select id="newCarCat">
+              <option value="suv">4x4 & SUV</option>
+              <option value="luxury">Raaxo & VIP</option>
+              <option value="pickup">Pickup</option>
+              <option value="sedan">Sedan</option>
+              <option value="van">Minivan & Bas</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:0.8rem; margin-bottom:0.8rem;">
+          <div class="book-field">
+            <label>Sanadka (Year)</label>
+            <input type="number" id="newCarYear" value="2024" required>
+          </div>
+          <div class="book-field">
+            <label>Taargada (Plate)</label>
+            <input type="text" id="newCarPlate" placeholder="MOG-12345" required>
+          </div>
+          <div class="book-field">
+            <label>Qiimaha / Maalin ($)</label>
+            <input type="number" id="newCarPrice" value="120" required>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:0.8rem; margin-bottom:0.8rem;">
+          <div class="book-field">
+            <label>Kuraasta (Seats)</label>
+            <input type="number" id="newCarSeats" value="7" required>
+          </div>
+          <div class="book-field">
+            <label>Gear-ka</label>
+            <select id="newCarTrans">
+              <option value="Automatic">Automatic</option>
+              <option value="Manual">Manual</option>
+            </select>
+          </div>
+          <div class="book-field">
+            <label>Shidaalka</label>
+            <select id="newCarFuel">
+              <option value="Petrol">Petrol</option>
+              <option value="Diesel">Diesel</option>
+              <option value="Hybrid">Hybrid</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-bottom:0.8rem;">
+          <div class="book-field">
+            <label>Magaalada / Xarunta</label>
+            <select id="newCarCity">
+              <option value="Muqdisho">Muqdisho</option>
+              <option value="Hargeysa">Hargeysa</option>
+              <option value="Garoowe">Garoowe</option>
+              <option value="Kismaayo">Kismaayo</option>
+              <option value="Boosaaso">Boosaaso</option>
+            </select>
+          </div>
+          <div class="book-field">
+            <label>Link-ga Sawirka Baabuurka (URL)</label>
+            <input type="url" id="newCarImage" placeholder="https://images.unsplash.com/...">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary" style="width:100%; justify-content:center; padding:0.85rem; margin-top:0.8rem;">
+          <i class="fas fa-save"></i> Keydi Baabuurka Cusub
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="cars-data.js"></script>
+  <script src="cars-app.js"></script>
+</body>
+</html>
